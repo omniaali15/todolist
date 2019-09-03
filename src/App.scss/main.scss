@@ -3,62 +3,62 @@ $secondaryColor: #2ebaee;
 $mainColor: #fff;
 $backgroundColor: #ebebeb;
 $borderColor: #ccc;
-
-body
-{
-    background: $primaryColor;
-    color: $mainColor;
+@mixin color($background,$color) {
+    background: $background;
+    color: $color;
 }
-.text-center {
-    text-align: center;
-}
-.container{
-    width: 60%;
-    margin: 10% auto;
-}
-.ListItems{
-    background: $mainColor;
-    color:$primaryColor;
-}
-.ListItems span{
-    display: inline-block;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 20px;
+@mixin border {
     border: 0.3px solid $borderColor;
 }
-.ListItems span.title {
-    background: $secondaryColor;
-    color: $mainColor;
-}
-.ListItems span.name, form input[type=text]{
-    width: 60%;
-}
-.ListItems span.age, form input[type=number]{
-    width: 30%;
-}
-.ListItems span.action, form input[type=submit]{
-    width: 9%;
-}
-.ListItems span.icon{
-    color : #f00;
-    cursor: pointer;
-}
-
-form {
-    padding: 10px;
-    background: $backgroundColor;
-    border: transparent;
-    border: 0.3px solid $borderColor;
-}
-form input{
-    border:none;
-    background: $backgroundColor;
-    text-align: center;
-}
-form input[type=submit]{
-    background: $secondaryColor;
-    border: 0.3px solid $secondaryColor;
-    color: $mainColor;
-    cursor: pointer;
+body{
+    @include color($primaryColor,$mainColor);
+    .text-center{
+        text-align: center;
+    }
+    .container{
+        width: 60%;
+        margin: 10% auto;
+    }
+    .ListItems{
+        @include color($mainColor,$primaryColor);
+        span{
+        display: inline-block;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 20px;
+        @include border();
+        }
+        span.title{
+            @include color($secondaryColor,$mainColor);
+        }
+        span.icon{
+            color : #f00;
+            cursor: pointer;
+        }
+    }
+    form{
+        padding: 10px;
+        background: $backgroundColor;
+        border: transparent;
+        @include border();
+        input{
+            border:none;
+            background: $backgroundColor;
+            text-align: center;
+        }
+    }
+    .ListItems span.name, form input[type=text]{
+        width: 60%;
+    }
+    .ListItems span.age, form input[type=number]{
+        width: 30%;
+    }
+    .ListItems span.action, form input[type=submit]{
+        width: 9%;
+    }
+    form input[type=submit]{
+        @include color($secondaryColor,$mainColor);
+        border: 0.3px solid $secondaryColor;
+        cursor: pointer;
+    }
 }
